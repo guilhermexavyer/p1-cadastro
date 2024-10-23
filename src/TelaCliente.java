@@ -7,6 +7,10 @@ import javax.swing.JTextField;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class TelaCliente {
     public static void main(String[] args) {
@@ -64,15 +68,74 @@ public class TelaCliente {
         btnSalvar.setBounds(10, 270, 150, 25);
         panel.add(btnSalvar);
 
+        JButton btnExcluir = new JButton("Excluir");
+        btnExcluir.setBounds(10, 300, 150, 25);
+        panel.add(btnExcluir);
+
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnSalvar, "Clique no botão Salvar",
-                "Teste de clique no botão",
-                1);
+                Cliente cliente = new Cliente();
+                cliente.setNome(txtNome.getText());
+                cliente.setCpf(txtCPF.getText());
+                cliente.setRg(txtRG.getText());
+                cliente.setEndereco(txtEndereco.getText());
+                cliente.setTelefone(txtTelefone.getText());
+                geraArquivo(cliente);
+            }
+        });
+
+        btnExcluir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                excluiArquivo();
             }
         });
 
         tela.setVisible(true);
+    }
+
+    private static void geraArquivo(Cliente cliente) {
+        String caminhoArquivo = "p1.txt";
+
+        File arquivo = new File(caminhoArquivo);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+            writer.write("Nome: " + cliente.getNome() + "\n");
+            writer.write("CPF: " + cliente.getCpf() + "\n");
+            writer.write("RG: " + cliente.getRg() + "\n");
+            writer.write("Endereço: " + cliente.getEndereco() + "\n");
+            writer.write("Telefone: " + cliente.getTelefone() + "\n");
+            JOptionPane.showMessageDialog(
+                null,
+                "Arquivo criado",
+                "Arquivo",
+                1);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Erro ao gravar dados",
+                "Erro",
+                0);
+            e.printStackTrace();
+        }
+    }
+
+    private static void excluiArquivo() {
+        String caminhoArquivo = "p1.txt";
+
+        File arquivo = new File(caminhoArquivo);
+
+        if (arquivo.delete()) {
+            JOptionPane.showMessageDialog(null,
+            "Arquivo excluido",
+            "Arquivo",
+            1);
+        } else {
+            JOptionPane.showMessageDialog(null,
+            "Erro ao excluir arquivo",
+            "Erro",
+            1);
+        }
     }
 }
