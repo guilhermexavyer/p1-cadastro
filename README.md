@@ -1,3 +1,3 @@
-# Aprendendo a programar em Java
+# Aprendendo Java
 
-Este é um projeto que foi desenvolvido para a disciplina **Programação I** do curso **Tecnologia em Análise e Desenvolvimento de Sistemas**, ministrada pelo professor **Flávio de Assis Vilela**, docente do **Instituto Federal de Goiás, Câmpus Jataí, Unidade Flamboyant**.
+Projeto desenvolvido no âmbito da disciplina **Programação I**, com supervisão do professor **Flávio de Assis Vilela**, docente do curso de **Tecnologia em Análise e Desenvolvimento de Sistemas** do **Instituto Federal de Goiás – Câmpus Jataí, Unidade Flamboyant.**
